@@ -1,6 +1,5 @@
 import React from 'react';
 import HomePage from './HomePage/homePage';
-import SearchResultPage from './SearchResultPage/searchResultPage';
 import PageNotFound from './NotFound/PageNotFound';
 import Header from './Header/header';
 import Footer from './Footer/footer';
@@ -16,10 +15,6 @@ import Repositories from './Repositories/repositories';
 
 const HomePageComponent = () => {
     return <HomePage />
-}
-
-const SearchResultPageComponent = (props) => {
-    return <SearchResultPage {...props} />
 }
 
 const PageNotFoundComponent = () => {
@@ -59,7 +54,7 @@ const SearchBarComponent = () => {
 }
 
 export {
-    HomePageComponent, SearchResultPageComponent, PageNotFoundComponent, HeaderComponent,
+    HomePageComponent, PageNotFoundComponent, HeaderComponent,
     LeftPanelComponent, RightPanelComponent, OverViewComponent, RepoComponent, 
     FooterComponent, SearchBarComponent
 }
