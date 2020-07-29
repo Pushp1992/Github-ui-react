@@ -29,6 +29,7 @@ const LeftPanel = () => {
                     <Image id="profileImageStyle" src={userInfo.avatar_url} roundedCircle />
                 </Col>
             </Row>
+            <br/>
             <Row>
                 <Col md={2}></Col>
                 <Col>
@@ -38,12 +39,14 @@ const LeftPanel = () => {
                     </h1>
                 </Col>
             </Row>
+            <br/>
             <Row>
                 <Col md={2}></Col>
                 <Col md={7}>
                     <div id="userBio">{userInfo.bio}</div>
                 </Col>
             </Row>
+            <br/>
             <Row>
                 <Col md={2}></Col>
                 <Col md={6}>

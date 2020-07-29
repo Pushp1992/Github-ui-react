@@ -32,8 +32,9 @@ class SearchBar extends Component {
     }
 
     passSearchValue(event) {
+        event.preventDefault();
+
         if (event.key === 'Enter') {
-            event.preventDefault();
             if (this.state.searchValue === "") {
                 CustomToastr.warning("Please provide search input");
                 return;
@@ -46,14 +47,17 @@ class SearchBar extends Component {
 
         if (event.currentTarget.name === "repoType") {
             this.setState({ selectedRepoType: event.currentTarget.id })
+            console.log(event.currentTarget.id)
         }
 
         if (event.currentTarget.name === "langType") {
             this.setState({ selectedLangType: event.currentTarget.id })
+            console.log(event.currentTarget.id)
         }
     }
 
     render() {
+        const searchInput = this.state.searchValue;
         const repoType = this.state.selectedRepoType;
         const langType = this.state.selectedLangType;
         return (
@@ -81,7 +85,7 @@ class SearchBar extends Component {
                                 this.state.langType.map(data => {
                                     return (
                                         <Dropdown.Item key={data.value} name="langType" id={data.value} eventKey={data.value}
-                                            onClick={this.handleSelect} active={data.value === langType ? true : false }>{data.label}</Dropdown.Item>
+                                            onClick={this.handleSelect} active={data.value === langType ? true : false}>{data.label}</Dropdown.Item>
                                     )
                                 })
                             }
@@ -94,7 +98,7 @@ class SearchBar extends Component {
                 <Row>
                     <Col>
                         {/* Child component */}
-                        {/* <CardComponent data={cardData} /> */}
+                        <CardComponent data={{searchInput, repoType, langType}} />
                         <CardComponent />
                     </Col>
                 </Row>

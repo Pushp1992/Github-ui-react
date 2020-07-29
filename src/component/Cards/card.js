@@ -29,7 +29,8 @@ const styles = {
 
 const CardComponent = ({ data }) => {
 
-    const [repoList, setRepoList] = React.useState([])
+    const [repoList, setRepoList] = React.useState([]);
+    const [updatedRepoList, setUpdatedRepoList] = React.useState([]);
 
     useEffect(() => {
         getRepoList()
@@ -43,8 +44,22 @@ const CardComponent = ({ data }) => {
             CustomToastr.error(err || 'something not right')
         }
     }
+    console.log("data", data)
 
-    // const repoData = data;
+    if (data !== undefined) {
+        repoList.forEach(dat => {
+            let repoListValues = Object.values(dat);
+
+            Object.values(data).forEach(el => {
+                if (repoListValues.includes(el)) {
+                    updatedRepoList.push(dat)
+                }
+            })
+        });
+        console.log(updatedRepoList)
+    }
+    // setUpdatedRepoList(updatedRepoList);
+
     return (
         <Container>
             <Row>
