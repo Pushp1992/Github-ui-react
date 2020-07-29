@@ -95,11 +95,11 @@ class SearchBar extends Component {
                         <Button variant="success">New</Button>{' '}
                     </Col>
                 </Row>
+                <br/>
                 <Row>
                     <Col>
                         {/* Child component */}
                         <CardComponent data={{searchInput, repoType, langType}} />
-                        <CardComponent />
                     </Col>
                 </Row>
             </Container>

@@ -67,19 +67,22 @@ const CardComponent = ({ data }) => {
                     {
                         repoList.map(data => {
                             return (
-                                <Card id="card-style">
-                                    <Card.Body>
-                                        <div>
-                                            <a href={data.html_url} target="_self"><span style={styles.title}>{data.name}</span></a>
-                                        </div>
-                                        <div><span style={styles.description1}>{data.description}</span></div>
-                                        <div>
-                                            <span style={styles.description}>{data.language}</span>
-                                            <span style={styles.description}>{data.default_branch}</span>
-                                            <span style={styles.description}>{data.updated_at}</span>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
+                                <>
+                                    <Card id="card-style">
+                                        <Card.Body>
+                                            <div>
+                                                <a href={data.html_url} target="_self"><span style={styles.title}>{data.name}</span></a>
+                                            </div>
+                                            <div><span style={styles.description1}>{data.description}</span></div>
+                                            <div>
+                                                <span style={styles.description}>{data.language}</span>
+                                                <span style={styles.description}>{data.default_branch}</span>
+                                                <span style={styles.description}>{data.updated_at}</span>
+                                            </div>
+                                        </Card.Body>
+                                    </Card>
+                                    <br />
+                                </>
                             )
                         })
                     }
