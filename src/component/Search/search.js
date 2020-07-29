@@ -9,8 +9,8 @@ class SearchBar extends Component {
         super(props)
         this.state = {
             searchValue: '',
-            selectedRepoType: 'All',
-            selectedLangType: 'All',
+            selectedRepoType: 'all',
+            selectedLangType: 'all',
             repoType: [],
             langType: [],
         }
@@ -68,7 +68,8 @@ class SearchBar extends Component {
                             {
                                 this.state.repoType.map(data => {
                                     return (
-                                        <Dropdown.Item key={data.value} name="repoType" id={data.value} eventKey={data.value} onClick={this.handleSelect}>{data.label}</Dropdown.Item>
+                                        <Dropdown.Item key={data.value} name="repoType" id={data.value} eventKey={data.value}
+                                            onClick={this.handleSelect} active={data.value === repoType ? true : false}>{data.label}</Dropdown.Item>
                                     )
                                 })
                             }
@@ -79,7 +80,8 @@ class SearchBar extends Component {
                             {
                                 this.state.langType.map(data => {
                                     return (
-                                        <Dropdown.Item key={data.value} name="langType" id={data.value} eventKey={data.value} onClick={this.handleSelect}>{data.label}</Dropdown.Item>
+                                        <Dropdown.Item key={data.value} name="langType" id={data.value} eventKey={data.value}
+                                            onClick={this.handleSelect} active={data.value === langType ? true : false }>{data.label}</Dropdown.Item>
                                     )
                                 })
                             }
@@ -91,9 +93,9 @@ class SearchBar extends Component {
                 </Row>
                 <Row>
                     <Col>
-                            {/* Child component */}
-                            {/* <CardComponent data={cardData} /> */}
-                            <CardComponent />
+                        {/* Child component */}
+                        {/* <CardComponent data={cardData} /> */}
+                        <CardComponent />
                     </Col>
                 </Row>
             </Container>
