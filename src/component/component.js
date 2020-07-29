@@ -4,7 +4,6 @@ import SearchResultPage from './SearchResultPage/searchResultPage';
 import PageNotFound from './NotFound/PageNotFound';
 import Header from './Header/header';
 import Footer from './Footer/footer';
-import NewsFeedPage from './NewsPage/newsPage';
 import SearchBar from './Search/search';
 import LeftPanel from './LeftPanel/leftPanel';
 import RightPanel from './RightPanel/rightPanel';
@@ -59,12 +58,8 @@ const SearchBarComponent = () => {
     return <SearchBar />
 }
 
-const NewsFeedPageComponent = () => {
-    return <NewsFeedPage />
-}
-
 export {
     HomePageComponent, SearchResultPageComponent, PageNotFoundComponent, HeaderComponent,
     LeftPanelComponent, RightPanelComponent, OverViewComponent, RepoComponent, 
-    FooterComponent, SearchBarComponent, NewsFeedPageComponent
+    FooterComponent, SearchBarComponent
 }

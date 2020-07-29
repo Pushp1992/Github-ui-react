@@ -1,4 +1,4 @@
-# This repository is meant for NEWS API
+# This repository is meant for github-ui-pagegithub-ui-page
 
 To Runs the app in the development mode.<br>
 Open [http://localhost:7000](http://localhost:7000) to view it in the browser.
@@ -70,11 +70,13 @@ ___
         -- Footer
         -- Header
         -- HomePage
-        -- NavBar
-        -- NewsPage
+        -- LeftPanel
         -- NotFound
+        -- OverView
+        -- RepoList
+        -- Repositories
+        -- RightPanel
         -- Search
-        -- SearchResultPage
         -- component.js
         -- routes.js
     -- server
