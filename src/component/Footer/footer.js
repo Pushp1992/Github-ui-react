@@ -4,13 +4,15 @@ import '../Footer/footer.css';
 
 const styles = {
     containerStyle: {
-        backgroundColor: "smokeWhite"
+        backgroundColor: "smokeWhite",
+        marginTop: '3rem',
+        height: '10rem'
     } 
 }
 
 function Footer() {
     return (
-        <Container fluid style={styles.containerStyle}>
+        <Container  style={styles.containerStyle}>
             <Row>
                 <Col md={true}><hr /></Col>
             </Row>

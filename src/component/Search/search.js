@@ -1,20 +1,28 @@
-/** 
-* Normal Search and Advance search Input,
-* Search will be populated into SearchResultPage
-*/
-
 import React, { Component } from 'react';
-import { Row, Col, Container, Button } from "react-bootstrap";
+import { Row, Col, Container, Button, Form, DropdownButton, Dropdown } from "react-bootstrap";
+import { Types, Language } from '../../utils/utils';
+import CardComponent from '../Cards/card';
 import CustomToastr from '../../utils/toastr';
-import { withRouter } from "react-router-dom";
-import searchImg from '../../assets/images/search.png';
+
 class SearchBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchValue: ''
+            searchValue: '',
+            selectedRepoType: 'All',
+            selectedLangType: 'All',
+            repoType: [],
+            langType: [],
         }
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            repoType: Types,
+            langType: Language
+        })
     }
 
     handleInputChange(event) {
@@ -30,18 +38,62 @@ class SearchBar extends Component {
                 CustomToastr.warning("Please provide search input");
                 return;
             }
-            this.props.history.push('/search-result', { searchInput: this.state });
+        }
+    }
+
+    handleSelect = (event) => {
+        event.preventDefault();
+
+        if (event.currentTarget.name === "repoType") {
+            this.setState({ selectedRepoType: event.currentTarget.id })
+        }
+
+        if (event.currentTarget.name === "langType") {
+            this.setState({ selectedLangType: event.currentTarget.id })
         }
     }
 
     render() {
+        const repoType = this.state.selectedRepoType;
+        const langType = this.state.selectedLangType;
         return (
             <Container fluid>
                 <Row>
+                    <Col md={6}>
+                        <Form.Control type="text" name='searchValue' value={this.state.searchValue}
+                            onChange={this.handleInputChange} onKeyUp={(e) => this.passSearchValue(e)} placeholder="Find a repository" />
+                    </Col>
+                    <Col xs="auto">
+                        <DropdownButton id="repo-type" title={`Type: ${repoType}`}>
+                            {
+                                this.state.repoType.map(data => {
+                                    return (
+                                        <Dropdown.Item key={data.value} name="repoType" id={data.value} eventKey={data.value} onClick={this.handleSelect}>{data.label}</Dropdown.Item>
+                                    )
+                                })
+                            }
+                        </DropdownButton>
+                    </Col>
+                    <Col xs="auto">
+                        <DropdownButton id="lang-type" title={`Language: ${langType}`}>
+                            {
+                                this.state.langType.map(data => {
+                                    return (
+                                        <Dropdown.Item key={data.value} name="langType" id={data.value} eventKey={data.value} onClick={this.handleSelect}>{data.label}</Dropdown.Item>
+                                    )
+                                })
+                            }
+                        </DropdownButton>
+                    </Col>
+                    <Col xs="auto">
+                        <Button variant="success">New</Button>{' '}
+                    </Col>
+                </Row>
+                <Row>
                     <Col>
-                        <input type="text" name='searchValue' value={this.state.searchValue}
-                            placeholder="search" onChange={this.handleInputChange} onKeyUp={(e) => this.passSearchValue(e)} />
-                        <br /><label style={{ fontSize: '10px' }}>Advance search</label>
+                            {/* Child component */}
+                            {/* <CardComponent data={cardData} /> */}
+                            <CardComponent />
                     </Col>
                 </Row>
             </Container>
@@ -49,4 +101,4 @@ class SearchBar extends Component {
     }
 }
 
-export default withRouter(SearchBar);
+export default SearchBar;

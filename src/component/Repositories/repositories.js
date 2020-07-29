@@ -1,11 +1,17 @@
 import React from 'react';
-import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import SearchBar from '../Search/search';
 import '../Repositories/repositories.css'
 
 const Repositories = () => {
     return (
-        <Container>
-            <h1>Repositories</h1>
+        <Container fluid>
+            <br />
+            <Row>
+                <Col>
+                    <SearchBar />
+                </Col>
+            </Row>
         </Container>
     )
 }

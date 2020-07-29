@@ -17,7 +17,7 @@ const HomePage = () => {
                 <HeaderComponent />
             </Row>
             <Row>
-                <Col>
+                <Col md={4}>
                     <LeftPanelComponent />
                 </Col>
                 <Col>

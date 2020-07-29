@@ -5,44 +5,43 @@ import { OverViewComponent, RepoComponent } from '../component';
 
 import '../RightPanel/rightPanel.css'
 
+const RouteWithSubRoutes = (route) => {
+    return (
+        <>
+            <Route
+                path={route.path}
+                render={props => (
+                    <route.component {...props} routes={route.routes} />
+                )}
+            />
+        </>
+    );
+};
 
 const RightPanel = () => {
     const routes = [
         {
-            path: "/overview",
-            component: OverViewComponent
+            path: "/",
+            component: RepoComponent
         },
         {
-            path: "/repositories",
-            component: RepoComponent,
+            path: "/overView",
+            component: OverViewComponent,
         }
     ];
-
-    const RouteWithSubRoutes = (route) => {
-        return (
-            <>
-                <Route
-                    path={route.path}
-                    render={props => (
-                        <route.component {...props} routes={route.routes} />
-                    )}
-                />
-            </>
-        );
-    };
-
 
     return (
         <Router>
             <Container>
                 <Row>
                     <Col>
-                        <Nav variant="tabs" defaultActiveKey="/overview">
+                        <Nav variant="tabs" defaultActiveKey="/">
                             <Nav.Item>
-                                <Nav.Link><Link to="/overview">Overview</Link></Nav.Link>
+                                <Nav.Link eventKey="/"><Link to="/">Repositories</Link></Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="/repositories"><Link to="/repositories">Repositories</Link></Nav.Link>
+                                {/* <Nav.Link eventKey="/repositories"><Link to="/repositories">Overview</Link></Nav.Link> */}
+                                <Nav.Link eventKey="/overView"><Link to="/overView">Overview</Link></Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link eventKey="projects">Projects</Nav.Link>
@@ -64,23 +63,5 @@ const RightPanel = () => {
         </Router>
     )
 }
-
-// return (
-//     <Container>
-//         <Row>
-//             <Col>
-//                 <NavBar />
-//             </Col>
-//         </Row>
-//         <Row>
-//             <Col>
-
-//                <OverViewComponent />
-//                <RepoComponent />
-
-//             </Col>
-//         </Row>
-//     </Container>
-// )
 
 export default RightPanel;

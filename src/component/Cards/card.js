@@ -1,21 +1,76 @@
-import React from "react";
-import { Card } from 'react-bootstrap';
+import React, { useEffect } from "react";
+import GithubService from '../../utils/service';
+import CustomToastr from '../../utils/toastr';
+import { Row, Col, Container, Card, Button, Form, DropdownButton, Dropdown } from "react-bootstrap";
+
+const styles = {
+    title: {
+        color: '#0366d6',
+        textDecoration: 'none',
+        boxSizing: 'border-box',
+        fontWeight: '600',
+        fontSize: '20px',
+        wordBreak: 'break-word',
+    },
+    description1: {
+        boxSizing: 'border-box',
+        fontSize: '15px',
+        color: 'rgb(0 0 0 / 81%)',
+        textAlign: '-webkit-match-parent'
+    },
+    description: {
+        boxSizing: 'border-box',
+        fontSize: '12px',
+        fontWeight: '2rem',
+        color: 'rgb(0 0 0 / 69%)',
+        textAlign: '-webkit-match-parent'
+    }
+}
 
 const CardComponent = ({ data }) => {
+
+    const [repoList, setRepoList] = React.useState([])
+
+    useEffect(() => {
+        getRepoList()
+    }, [])
+
+    const getRepoList = async () => {
+        try {
+            let response = await GithubService.getUserRepo();
+            setRepoList(response)
+        } catch (err) {
+            CustomToastr.error(err || 'something not right')
+        }
+    }
+
+    // const repoData = data;
     return (
-        <Card id="card-style">
-            <Card.Img variant="top" src={data.urlToImage} />
-            <Card.Body>
-                <Card.Title className="cardTitle">
-                    <Card.Link href={data.url} target="_blank">{data.title}</Card.Link>
-                </Card.Title>
-                <Card.Text className="cardText">{data.content}</Card.Text>
-            </Card.Body>
-            <Card.Footer>
-                <small className="text-muted">{data.source.name}</small><br />
-                <small className="text-muted">{data.publishedAt}</small>
-            </Card.Footer>
-        </Card>
+        <Container>
+            <Row>
+                <Col>
+                    {
+                        repoList.map(data => {
+                            return (
+                                <Card id="card-style">
+                                    <Card.Body>
+                                        <div>
+                                            <a href={data.html_url} target="_self"><span style={styles.title}>{data.name}</span></a>
+                                        </div>
+                                        <div><span style={styles.description1}>{data.description}</span></div>
+                                        <div>
+                                            <span style={styles.description}>{data.language}</span>
+                                            <span style={styles.description}>{data.default_branch}</span>
+                                            <span style={styles.description}>{data.updated_at}</span>
+                                        </div>
+                                    </Card.Body>
+                                </Card>
+                            )
+                        })
+                    }
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
